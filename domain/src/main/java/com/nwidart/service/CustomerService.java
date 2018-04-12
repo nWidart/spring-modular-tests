@@ -7,4 +7,5 @@ public interface CustomerService {
 
   List<Customer> findAll();
 
+  Customer create(Customer customer);
 }

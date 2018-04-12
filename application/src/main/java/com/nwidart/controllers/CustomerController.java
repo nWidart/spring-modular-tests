@@ -3,8 +3,12 @@ package com.nwidart.controllers;
 import com.nwidart.model.Customer;
 import com.nwidart.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -21,5 +25,11 @@ public class CustomerController {
   @GetMapping
   public Iterable<Customer> customers() {
     return customerService.findAll();
+  }
+
+  @PostMapping
+  @ResponseStatus(code = HttpStatus.CREATED)
+  public Customer save(@RequestBody Customer customer) {
+    return customerService.create(customer);
   }
 }
