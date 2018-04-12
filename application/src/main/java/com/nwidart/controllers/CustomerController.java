@@ -19,7 +19,7 @@ public class CustomerController {
   }
 
   @GetMapping
-  public Iterable<Customer> greeting() {
+  public Iterable<Customer> customers() {
     return customerService.findAll();
   }
 }
