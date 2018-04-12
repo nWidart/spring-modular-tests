@@ -8,4 +8,6 @@ public interface CustomerRepository extends CrudRepository<Customer, Long> {
 
   List<Customer> findAll();
 
+  @Override
+  <S extends Customer> S save(S entity);
 }
