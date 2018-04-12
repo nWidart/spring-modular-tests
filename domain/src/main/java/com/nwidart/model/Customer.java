@@ -1,17 +1,24 @@
 package com.nwidart.model;
 
+import java.util.UUID;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 public class Customer {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private long id;
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(
+      name = "UUID",
+      strategy = "org.hibernate.id.UUIDGenerator"
+  )
+  @Column(name = "id", updatable = false, nullable = false)
+  private UUID id;
 
   @Column(nullable = false)
   private String firstname;
@@ -38,7 +45,7 @@ public class Customer {
     this.lastname = lastname;
   }
 
-  public long getId() {
+  public UUID getId() {
     return id;
   }
 }
